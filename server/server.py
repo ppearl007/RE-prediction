@@ -1,18 +1,21 @@
 from urllib import response
 from flask import Flask, request, jsonify
+from flask_cors import CORS, cross_origin
 from itsdangerous import json
 from pyparsing import removeQuotes
 import util
 
 app = Flask(__name__)
-# app.config[‘JSONIFY_PRETTYPRINT_REGULAR’] = False
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
-# define the path or route through which you can get to the page
+
+# expose endpoints. define the path or route through which you can get to the page
 @app.route("/")
 
 # define the pages that will be displayed on the website using functions
-def hello():
-    return "hi"
+def home():
+    return "Welcome to the home page"
 
 @app.route("/get_location_names")
 def get_location_names():
@@ -22,7 +25,7 @@ def get_location_names():
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
-@app.route("/predict_home_price", methods=['POST'])
+@app.route("/predict_home_price", methods=['GET', 'POST'])
 def predict_home_price():
     total_sqft = float(request.form['total_sqft'])
     location = request.form['location']

@@ -33,12 +33,12 @@ def load_saved_artifacts():
     global __data_columns
     global __locations
 
-    with open("/Users/Peluoluwa/Code/REprediction/server/artifacts/columns.json",'r') as f:
+    with open("/Users/Peluoluwa/Code/RE-prediction/server/artifacts/columns.json",'r') as f:
         __data_columns = json.load(f)['data_columns']
         __locations = __data_columns[3:]
     
     global __model
-    with open("/Users/Peluoluwa/Code/REprediction/server/artifacts/bangalore_home_prices_model.pickle",'rb') as f:
+    with open("/Users/Peluoluwa/Code/RE-prediction/server/artifacts/bangalore_home_prices_model.pickle",'rb') as f:
         __model = pickle.load(f)
     print("loading saved artifacts ... done")
 
